@@ -1,0 +1,153 @@
+<mvc:View 
+    xmlns:internal="sap.landvisz.internal" 
+    xmlns:cards="sap.f.cards" 
+    xmlns:table="sap.ui.table" 
+    controllerName="campeonatobrasileiro.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <Page id="page" title="{i18n>title}">
+        <ObjectHeader id="MainHeader" 
+            title="{ModeloDadosGerais>/edicao_atual/nome_popular}"
+            number="{ModeloDadosGerais>/rodada_atual/rodada}a"
+            numberUnit="Rodada"
+        >
+        </ObjectHeader>
+        <html:style>
+            .HeaderVBox {
+                padding-left: 50px;
+            }
+        </html:style>
+        <VBox id="HeaderVBox" class="HeaderVBox">
+            <Title id="HeaderVBox-Text1" text="Tipo de Campeonato:" titleStyle="H6"></Title>
+            <Title id="HeaderVBox-Text2" text="{ModeloDadosGerais>/tipo}" titleStyle="H6"></Title>
+        </VBox>
+        
+        <IconTabBar id="MainIconTabBar">
+            <items>
+                <IconTabFilter 
+                    id="TabFilterClassificacao" 
+                    text="Classificação" 
+                    key="Classificacao"
+                    icon="sap-icon://competitor"
+                >
+                    <Table id="Table1"
+                        items="{ModeloClassificacao>/Classificacao}">
+                        <columns>
+                            <Column id="Posicao">
+                                <Text id="Text1" text="Posição"></Text>
+                            </Column>
+                            <Column id="Escudo">
+                                <Text id="Text2" text="Escudo"></Text>
+                            </Column>
+                            <Column id="Time">
+                                <Text id="Text3" text="Time"></Text>
+                            </Column>
+                            <Column id="Pontos">
+                                <Text id="Text4" text="Pontos"></Text>
+                            </Column>
+                            <Column id="PJ">
+                                <Text id="Text5" text="Partidas Jogadas"></Text>
+                            </Column>
+                            <Column id="Vitorias">
+                                <Text id="Text6" text="Vitórias"></Text>
+                            </Column>
+                            <Column id="Empates">
+                                <Text id="Text7" text="Empates"></Text>
+                            </Column>
+                            <Column id="Derrotas">
+                                <Text id="Text8" text="Derrotas"></Text>
+                            </Column>
+                            <Column id="GM">
+                                <Text id="Text9" text="Gols Marcados"></Text>
+                            </Column>
+                            <Column id="GC">
+                                <Text id="Text10" text="Gols Contra"></Text>
+                            </Column>
+                            <Column id="SG">
+                                <Text id="Text11" text="Saldo de Gols"></Text>
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem id="Itm1">
+                                <cells>
+                                    <Text id="Itm1-Text1" text="{ModeloClassificacao>posicao}"></Text>                                    
+                                    <Image id="Itm1-Img2" 
+                                        src="{ModeloClassificacao>time/escudo}"
+                                        width="40%"
+                                    ></Image>                                    
+                                    <Text id="Itm1-Text3" text="{ModeloClassificacao>time/nome_popular}"></Text>
+                                    <Text id="Itm1-Text4" text="{ModeloClassificacao>pontos}"></Text>
+                                    <Text id="Itm1-Text5" text="{ModeloClassificacao>jogos}"></Text>
+                                    <Text id="Itm1-Text6" text="{ModeloClassificacao>vitorias}"></Text>
+                                    <Text id="Itm1-Text7" text="{ModeloClassificacao>empates}"></Text>
+                                    <Text id="Itm1-Text8" text="{ModeloClassificacao>derrotas}"></Text>
+                                    <Text id="Itm1-Text9" text="{ModeloClassificacao>gols_pro}"></Text>
+                                    <Text id="Itm1-Text10" text="{ModeloClassificacao>gols_contra}"></Text>
+                                    <Text id="Itm1-Text11" text="{ModeloClassificacao>saldo_gols}"></Text>
+                                </cells>
+                            </ColumnListItem>                             
+                        </items>
+                    </Table>
+                </IconTabFilter>
+
+                <IconTabFilter 
+                    id="TabFilterPartidas" 
+                    text="Partidas" 
+                    key="Partidas"
+                    icon="sap-icon://soccer"
+                >
+                    <FlexBox id="FlexBoxPartidas1">
+                        <Title id="PartidasTitle" text="9º Rodada" titleStyle="H3"></Title>
+                    </FlexBox>                
+
+                    <Table id="TablePartidas" 
+                        items="{ModeloPartidas>/partidas}">
+                         <columns>
+                            <Column id="Time1" hAlign="End" vAlign="Middle">
+                                <!-- Time1 -->
+                                <Text id="Comp-Time1"></Text>
+                            </Column>       
+                            <Column id="Partida" hAlign="Center" vAlign="Middle">
+                                <!-- Partida -->
+                                <Text id="Comp-Partida" text="Resultados"></Text>                                
+                            </Column>
+                            <Column id="Time2" hAlign="Begin" vAlign="Middle">
+                                <!-- Time2 -->
+                                <Text id="Comp-Time2"></Text>
+                            </Column>                            
+                        </columns>
+
+                        <items>
+                            <ColumnListItem id="Partida-Itm1" vAlign="Middle">
+                                <cells>
+                                    <Image id="Partida-Itm1-Img1" 
+                                        src="{ModeloPartidas>time_mandante/escudo}"
+                                        width="15%"
+                                    ></Image>
+                                    <VBox id="Partida-Fb3"
+                                        alignItems="Center"
+                                        justifyContent="Center"
+                                    >
+                                        <Text id="Partida-Itm1-Text2-1" 
+                                            text="{ModeloPartidas>placar} &#10; {ModeloPartidas>data_realizacao} {ModeloPartidas>hora_realizacao}" 
+                                            textAlign="Center"
+                                        ></Text>
+                                        <Text id="Partida-Itm1-Text2-2" text="{ModeloPartidas>status}"></Text>
+                                    </VBox>
+                                    <Image id="Partida-Itm1-Img3" 
+                                        src="{ModeloPartidas>time_visitante/escudo}"
+                                        width="15%"
+                                    ></Image>                                                                                                        
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>                                       
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+    </Page>
+</mvc:View>
+ 
